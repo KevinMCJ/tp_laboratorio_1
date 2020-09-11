@@ -144,7 +144,7 @@ void MostrarResultados(float sumaR, float restaR, float divisionR, float multipl
                         ASI QUE PONEMOS ESTO PARA ARREGLARLO EN CADA SITUACION.*/
     if(numeroVerificar1 > 34 && numeroVerificar2 >34)
     {
-        printf("e) No se puede mostrar factoriales tan grandes (MAX:34).\n\n");
+        printf("e) No se pueden mostrar factoriales tan grandes (MAX:34).\n\n");
     }
     else if(numeroVerificar1 > 34)
     {

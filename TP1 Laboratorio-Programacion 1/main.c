@@ -48,11 +48,15 @@ int main()
                 MostrarResultados(sumaResuelta, restaResuelta, divisionResuelta, multiplicacionResuelta, factorialResueltoA, factorialResueltoB, primerNumero, segundoNumero);
                 break;
             default:
-                printf("\n.Gracias por utilizar el programa...\n");
+                printf("\n.Gracias por utilizar el programa...\n\n");
 
         }
 
-        LimpiarConsola();
+        //SI LA OPCION ELEGIDA ES DISTINTA A "SALIR" RESETEAMOS LA TERMINAL CON LOS DATOS ACTUALIZADOS.
+        if(opcionElegida != 5)
+        {
+            LimpiarConsola();
+        }
 
     }while(opcionElegida != 5);
 

@@ -4,5 +4,9 @@
 
 int main()
 {
+    int opcionElegida;
+    float primerNumero;
+    float segundoNumero;
+
     return 0;
 }

@@ -13,15 +13,38 @@ int main()
     primerNumero = 0;
     segundoNumero = 0;
 
+    float sumaResuelta;
+    float restaResuelta;
+    float divisionResuelta;
+    float multiplicacionResuelta;
+    float factorialResueltoA;
+    float factorialResueltoB;
+
     do
     {
         ImprimirMenu(primerNumero, segundoNumero);
 
         ElegirOpcion();
 
-        primerNumero = PedirOperando("-Ingrese operando ejemplo: ");
+        switch(opcionElegida)
+        {
+            case 1:
+                primerNumero = PedirOperando("\n-Ingrese el primer operando: ");
+                break;
+            case 2:
+                segundoNumero = PedirOperando("\n-Ingrese el segundo operando: ");
+                break;
+            case 3:
+                sumaResuelta = CalcularSuma(primerNumero, segundoNumero);
+                restaResuelta = CalcularResta(primerNumero, segundoNumero);
+                divisionResuelta = CalcularDivision(primerNumero, segundoNumero);
+                multiplicacionResuelta = CalcularMultiplicacion(primerNumero, segundoNumero);
+                factorialResueltoA = CalcularFactorial(primerNumero);
+                factorialResueltoB = CalcularFactorial(segundoNumero);
 
-        printf("Su operando es: %f", primerNumero);
+                printf("\n-Las operaciones fueron realizadas.\n\n");
+                break;
+        }
 
     }while(opcionElegida != 5);
 

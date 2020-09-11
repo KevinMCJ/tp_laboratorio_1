@@ -17,3 +17,7 @@ float CalcularDivision(float, float);
 float CalcularMultiplicacion(float, float);
 
 float CalcularFactorial(float);
+
+void MostrarResultados(float, float, float, float, float, float, float, float);
+
+void LimpiarConsola();

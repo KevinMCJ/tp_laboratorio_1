@@ -24,7 +24,7 @@ int main()
     {
         ImprimirMenu(primerNumero, segundoNumero);
 
-        ElegirOpcion();
+        opcionElegida = ElegirOpcion();
 
         switch(opcionElegida)
         {
@@ -44,7 +44,15 @@ int main()
 
                 printf("\n-Las operaciones fueron realizadas.\n\n");
                 break;
+            case 4:
+                MostrarResultados(sumaResuelta, restaResuelta, divisionResuelta, multiplicacionResuelta, factorialResueltoA, factorialResueltoB, primerNumero, segundoNumero);
+                break;
+            default:
+                printf("\n.Gracias por utilizar el programa...\n");
+
         }
+
+        LimpiarConsola();
 
     }while(opcionElegida != 5);
 

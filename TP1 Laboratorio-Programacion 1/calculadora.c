@@ -118,3 +118,51 @@ float CalcularFactorial(float numero)
 
     return resultado;
 }
+
+void MostrarResultados(float sumaR, float restaR, float divisionR, float multiplicacionR, float factorialRA, float factorialRB, float numeroVerificar1, float numeroVerificar2)
+{
+    printf("\n---RESULTADOS---\n");
+    printf("a) El resultado de A+B es: %.2f\n", sumaR);
+    printf("b) El resultado de A-B es: %.2f\n", restaR);
+
+    if(numeroVerificar1 == 0 || numeroVerificar2 == 0)
+    {
+        printf("c) NO es posible dividir por cero\n");
+    }//SI UNO DE LOS NUMEROS DE LA OPERACION ES MAYOR A 100 MOSTRAR LA DIVISION CON 5 DECIMALES
+    else if(numeroVerificar1 > 99 || numeroVerificar2 > 99)
+    {
+        printf("c) El resultado de A/B es: %f\n", divisionR);
+    }
+    else//SI NO (PRIMER O SEGUNDO OPERADOR, NO SON 0 Y TAMPOCO MAYORES A 99 MOSTRAR RESULTADO CON 2 DECIMALES
+    {
+        printf("c) El resultado de A/B es: %.2f\n", divisionR);
+    }
+
+    printf("d) El resultado de A*B es: %.2f\n", multiplicacionR);
+
+    /*CUANDO SACAMOS EL FACTORIAL DE UN OPERANDO MAYOR A 34 , TIRA COMO RESULTADO ".1#F"
+                        ASI QUE PONEMOS ESTO PARA ARREGLARLO EN CADA SITUACION.*/
+    if(numeroVerificar1 > 34 && numeroVerificar2 >34)
+    {
+        printf("e) No se puede mostrar factoriales tan grandes (MAX:34).\n\n");
+    }
+    else if(numeroVerificar1 > 34)
+    {
+        printf("e) El factorial de A es: Es muy grande para mostrarlo y El factorial de b es: %.2f\n\n", factorialRB);
+    }
+    else if(numeroVerificar2 > 34)
+    {
+        printf("e) El factorial de A es: %.2f y El factorial de b es muy grande para mostrarlo.\n\n", factorialRA);
+    }
+    else
+    {
+        printf("e) El factorial de A es: %.2f y El factorial de b es: %.2f\n\n", factorialRA, factorialRB);
+    }
+
+}
+
+void LimpiarConsola()
+{
+    system("pause");
+    system("cls");
+}

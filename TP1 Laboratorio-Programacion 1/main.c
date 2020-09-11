@@ -46,6 +46,8 @@ int main()
                 break;
             case 4:
                 MostrarResultados(sumaResuelta, restaResuelta, divisionResuelta, multiplicacionResuelta, factorialResueltoA, factorialResueltoB, primerNumero, segundoNumero);
+
+                printf("\n-Si no utilizo la opcion 3 por favor hagalo con anterioridad, de lo contrario ignore este mensaje.\n\n");
                 break;
             default:
                 printf("\n.Gracias por utilizar el programa...\n\n");

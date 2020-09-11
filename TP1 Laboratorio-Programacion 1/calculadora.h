@@ -1,5 +1,7 @@
 /*PROTOTIPO O FIRMA*/
 
+void ImprimirMenu(float, float);
+
 int ElegirOpcion();
 
 int ValidarOpcion(int);

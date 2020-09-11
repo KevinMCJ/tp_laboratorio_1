@@ -19,6 +19,10 @@ int main()
 
         ElegirOpcion();
 
+        primerNumero = PedirOperando("-Ingrese operando ejemplo: ");
+
+        printf("Su operando es: %f", primerNumero);
+
     }while(opcionElegida != 5);
 
     return 0;

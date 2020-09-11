@@ -20,6 +20,15 @@ void ImprimirMenu(float primerNumero, float segundoNumero)
     printf("5- Salir del programa.\n");
 }
 
+float PedirOperando(char texto[])
+{
+    float operandoFlotante;
+
+    printf("%s", texto);
+    scanf("%f", &operandoFlotante);
+
+    return operandoFlotante;
+}
 
 int ElegirOpcion()
 {

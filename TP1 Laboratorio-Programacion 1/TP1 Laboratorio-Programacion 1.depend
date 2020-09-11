@@ -1,3 +1,13 @@
 # depslib dependency file v1.0
-1599862193 source:c:\users\kevin\desktop\tp_laboratorio_1\tp1 laboratorio-programacion 1\calculadora.c
+1599862513 source:c:\users\kevin\desktop\tp_laboratorio_1\tp1 laboratorio-programacion 1\calculadora.c
+	<stdio.h>
+	<stdlib.h>
+	"calculadora.h"
+
+1599862452 c:\users\kevin\desktop\tp_laboratorio_1\tp1 laboratorio-programacion 1\calculadora.h
+
+1599862570 source:c:\users\kevin\desktop\tp_laboratorio_1\tp1 laboratorio-programacion 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"calculadora.h"
 

@@ -2,6 +2,8 @@
 
 void ImprimirMenu(float, float);
 
+float PedirOperando(char texto[]);
+
 int ElegirOpcion();
 
 int ValidarOpcion(int);

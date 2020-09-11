@@ -1,5 +1,35 @@
 /*DESAROLLO O IMPLEMENTACION*/
 
+int ElegirOpcion()
+{
+    int opcionElegida;
+
+    printf("\n-Que desea hacer?: ");
+    scanf("%d", &opcionElegida);
+
+    while(ValidarOpcion(opcionElegida) == 0)
+    {
+        printf("\nERROR! Por favor ingrese una opcion valida: ");
+        scanf("%d", &opcionElegida);
+    }
+
+    return opcionElegida;
+}
+
+int ValidarOpcion(int OpcionElegida)
+{
+    int retorno;
+
+    retorno = 1;
+
+    if(OpcionElegida > 5 || OpcionElegida < 1)
+    {
+        retorno = 0;
+    }
+
+    return retorno;
+}
+
 float CalcularSuma(float primerNumero, float segundoNumero)
 {
     float resultado;

@@ -1,5 +1,9 @@
 /*PROTOTIPO O FIRMA*/
 
+int ElegirOpcion();
+
+int ValidarOpcion(int);
+
 float CalcularSuma(float, float);
 
 float CalcularSuma(float, float);

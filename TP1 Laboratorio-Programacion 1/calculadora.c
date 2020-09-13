@@ -140,9 +140,22 @@ void MostrarResultados(float sumaR, float restaR, float divisionR, float multipl
 
     printf("d) El resultado de A*B es: %.2f\n", multiplicacionR);
 
-    /*CUANDO SACAMOS EL FACTORIAL DE UN OPERANDO MAYOR A 34 , TIRA COMO RESULTADO ".1#F"
-                        ASI QUE PONEMOS ESTO PARA ARREGLARLO EN CADA SITUACION.*/
-    if(numeroVerificar1 > 34 && numeroVerificar2 >34)
+    /*CUANDO SACAMOS EL FACTORIAL DE UN OPERANDO MAYOR A 34 (O SI ALGUNO DE LOS OPERANDOS ES NEGATIVO)
+    NOS TIRA MENSAJES DE ERROR COMO.. ".1#F", ASI QUE AGREGO ESTO PARA ARREGLARLO EN CADA SITUACION.*/
+
+    if(numeroVerificar1 < 0 && numeroVerificar2 < 0)
+    {
+        printf("e) No se pueden calcular factoriales de numeros negativos.\n\n");
+    }
+    else if(numeroVerificar1 < 0 && numeroVerificar2 > 0)
+    {
+        printf("e) El factorial de A es: Ingrese un numero positivo y El factorial de b es: %.2f.\n\n", factorialRB);
+    }
+    else if(numeroVerificar1 > 0 && numeroVerificar2 < 0)
+    {
+        printf("e) El factorial de A es: %.2f y El factorial de b es: Ingrese un numero positivo.\n\n", factorialRA);
+    }
+    else if(numeroVerificar1 > 34 && numeroVerificar2 >34)
     {
         printf("e) No se pueden mostrar factoriales tan grandes (MAX:34).\n\n");
     }

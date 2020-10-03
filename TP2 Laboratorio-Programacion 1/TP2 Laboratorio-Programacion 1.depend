@@ -1,0 +1,38 @@
+# depslib dependency file v1.0
+1601691586 source:c:\users\kevin\desktop\tp_laboratorio_1\tp2 laboratorio-programacion 1\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1601677752 c:\users\kevin\desktop\tp_laboratorio_1\tp2 laboratorio-programacion 1\utn.h
+	<stdio.h>
+
+1601691764 source:c:\users\kevin\desktop\tp_laboratorio_1\tp2 laboratorio-programacion 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayEmployees.h"
+	"utn.h"
+	"myvalidations.h"
+
+1601691238 c:\users\kevin\desktop\tp_laboratorio_1\tp2 laboratorio-programacion 1\arrayemployees.h
+	<stdio.h>
+
+1601691244 source:c:\users\kevin\desktop\tp_laboratorio_1\tp2 laboratorio-programacion 1\arrayemployees.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"ArrayEmployees.h"
+	"utn.h"
+	"myvalidations.h"
+
+1601691813 c:\users\kevin\desktop\tp_laboratorio_1\tp2 laboratorio-programacion 1\myvalidations.h
+
+1601686367 source:c:\users\kevin\desktop\tp_laboratorio_1\tp2 laboratorio-programacion 1\myvalidations.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"myvalidations.h"
+

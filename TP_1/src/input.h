@@ -11,6 +11,4 @@ float PedirFlotante(char mensaje[], char mensajeError[], float minimo, float max
 
 int ValidarFlotante(float numeroAValidar, float minimo, float maximo);
 
-
-
 #endif /* INPUT_H_ */

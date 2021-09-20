@@ -69,7 +69,7 @@ int CalcularFactorial(float numero, float *pResultado)
     factorial = 1;
     retorno = -1;
 
-    if(numero >= 0 && numero < 35)
+    if(numero >= 0 && numero < 35) //(34!) Es lo maximo que puede calcular el float antes de mostrar basura.
     {
     	retorno = 0;
     	for(i=numero; i>0; i--)

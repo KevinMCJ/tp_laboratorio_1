@@ -1,10 +1,6 @@
 #include "input.h"
 #include "calculadora.h"
 
-//VALIDAR NO PODER DIVIDIR POR 0 Y SACAR FACTORIAL DE UN NUMERO NEGATIVO. CREO QUE YA LO RESOLVI
-/*ARREGLAR PROBLEMAS CON LAS BANDERAS DEL MENU. (LITERAL PROBAR TODAS DE NUEVO Y CAMBIARLAS SI ESTAN MAL,
- * POR QUE ME EXPLOTO LA CABEZA)*/
-
 int main(void) {
 
 	setbuf(stdout, NULL);
@@ -25,7 +21,7 @@ int main(void) {
 	float factorialResueltoA;
 	float factorialResueltoB;
 	int retornoDivision;
-	int retornoFactorialA;
+	int retornoFactorialA;	//Retornos para analizar los casos de error e imprimir distintos mensajes.
 	int retornoFactorialB;
 	int flagCalculoOperaciones = 0;
 
@@ -36,7 +32,7 @@ int main(void) {
 
 		opcionElegida = PedirEntero("\n-Que desea hacer?: ", "\n-ERROR! Por favor ingrese una opcion valida: ", 1, 5);
 
-		//Bandera para que el usuario calcule, si decide cambiar algun operando.
+		//Bandera para que el usuario calcule antes de mostrar, al cambiar algun operando.
 		if(opcionElegida == 1 || opcionElegida == 2)
 		{
 			flagCalculoOperaciones = 0;

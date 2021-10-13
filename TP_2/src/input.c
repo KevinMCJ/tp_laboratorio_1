@@ -269,7 +269,7 @@ int PedirString(char* pResultado, int longitud, char* mensaje, char* mensajeErro
 	{
 		printf("%s", mensaje);
 
-		if(getNombre(bufferString,sizeof(bufferString)) == 0 && strnlen(bufferString,sizeof(bufferString)) < longitud)
+		if(getNombre(bufferString,sizeof(bufferString)) == 0 && strnlen(bufferString,sizeof(bufferString)) <= longitud)
 		{
 			strncpy(pResultado, bufferString, longitud);
 			retorno = 0;
@@ -286,5 +286,36 @@ int PedirString(char* pResultado, int longitud, char* mensaje, char* mensajeErro
 	}while(reintentos >= 0);
 
 	return retorno;
+}
+
+int GetConfirmCharacter(char* confirmC, char* mensaje, char* mensajeError, int reintentos)
+{
+	int rtnValue = -1;
+	char confirmCharacter;
+
+    do
+    {
+    	printf("%s", mensaje);
+		fflush(stdin);
+		scanf("%c", &confirmCharacter);
+		confirmCharacter = toupper(confirmCharacter);
+
+		if(confirmCharacter == 'S' || confirmCharacter == 'N')
+		{
+			*confirmC = confirmCharacter;
+			rtnValue = 0;
+			break;
+		}
+
+		if(rtnValue != 0 && reintentos > 0)
+		{
+			printf("%s", mensajeError);
+		}
+
+		reintentos--;
+
+    }while(reintentos >= 0);
+
+    return rtnValue;
 }
 

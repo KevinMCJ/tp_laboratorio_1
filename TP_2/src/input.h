@@ -35,4 +35,6 @@ int PedirFlotante(float* pResultado, char* mensaje, char* mensajeError, float mi
 /// @return	0 si se obtuvo el string correctamente | -1 en caso de error.
 int PedirString(char* pResultado, int longitud, char* mensaje, char* mensajeError, int reintentos);
 
+int GetConfirmCharacter(char* confirmC, char* mensaje, char* mensajeError, int reintentos);
+
 #endif /* INPUT_H_ */

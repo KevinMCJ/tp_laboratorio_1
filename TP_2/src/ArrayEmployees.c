@@ -119,12 +119,15 @@ int GetNextID(eEmployee* listEmployees, int len)
 {
 	int newID;
 
-	for(int i = 0; i < len; i++)
+	if(listEmployees != NULL && len > 0)
 	{
-		if(listEmployees[i].isEmpty == EMPTY)
+		for(int i = 0; i < len; i++)
 		{
-			newID = i+1; //Empieza en 1.
-			break;
+			if(listEmployees[i].isEmpty == EMPTY)
+			{
+				newID = i+1; //Empieza en 1.
+				break;
+			}
 		}
 	}
 
@@ -140,8 +143,8 @@ int CreateEmployee(eEmployee* listEmployees, int len)
 	{
 		if( PedirString(myEmployee.name, 18, "\n-Ingrese el nombre del/la empleado/a: ", "\n.ERROR! -> MAX CARACTERES: 18 / SOLO LETRAS / SIN ESPACIOS." , 4) == 0
 		&&	PedirString(myEmployee.lastName, 18, "\n-Ingrese el apellido del/la empleado/a: ", "\n.ERROR! -> MAX.CARACTERES: 18 / SOLO LETRAS / SIN ESPACIOS." , 4) == 0
-		&&	PedirFlotante(&myEmployee.salary, "\n-Ingrese el salario del/la empleado/a: ", "\n.ERROR! -> MIN: 14K MAX: 350K", 14000, 350000, 4) == 0
-		&&	PedirEntero(&myEmployee.sector, "\n-Ingrese el sector del/la empleado/a: ", "\n.ERROR.. SECTOR INVALIDO! 1 | 2 | 3 | 4.", 1, 4, 4) == 0)
+		&&	PedirFlotante(&myEmployee.salary, "\n-Ingrese el salario del/la empleado/a en USD: ", "\n.ERROR! -> MIN: 600 MAX: 20K", 600, 20000, 4) == 0
+		&&	PedirEntero(&myEmployee.sector, "\n-Ingrese el sector del/la empleado/a: ", "\n.ERROR.. SECTOR INVALIDO! 1 - 20.", 1, 20, 4) == 0)
 		{
 			myEmployee.id = GetNextID(listEmployees, len);
 
@@ -243,7 +246,7 @@ int ModifyEmployee(eEmployee* listEmployees, int len, int id)
 						}
 						break;
 					case 3:
-						if(PedirFlotante(&auxSalary, "\n-Ingrese el nuevo salario del/la empleado/a: ", "\n.ERROR! -> MIN: 14K MAX: 350K", 14000, 350000, 4) == 0
+						if(PedirFlotante(&auxSalary, "\n-Ingrese el nuevo salario del/la empleado/a en USD: ", "\n.ERROR! -> MIN: 600 MAX: 15K", 600, 15000, 4) == 0
 						&& GetConfirmCharacter(&confirmCharacter, "\n-Esta seguro de que desea modificar el salario del/la empleado/a? S / N: ", "\n.ERROR! Solo ingrese S / N", 4) == 0
 						&& confirmCharacter == 'S')
 						{
@@ -252,7 +255,7 @@ int ModifyEmployee(eEmployee* listEmployees, int len, int id)
 						}
 						break;
 					case 4:
-						if(PedirEntero(&auxSector, "\n-Ingrese el nuevo sector del/la empleado/a: ", "\n.ERROR.. SECTOR INVALIDO! 1 | 2 | 3 | 4.", 1, 4, 4) == 0
+						if(PedirEntero(&auxSector, "\n-Ingrese el nuevo sector del/la empleado/a: ", "\n.ERROR.. SECTOR INVALIDO! 1 - 20.", 1, 20, 4) == 0
 						&& GetConfirmCharacter(&confirmCharacter, "\n-Esta seguro de que desea modificar el sector del/la empleado/a? S / N: ", "\n.ERROR! Solo ingrese S / N", 4) == 0
 						&& confirmCharacter == 'S')
 						{
@@ -305,30 +308,26 @@ int SortEmployees(eEmployee* listEmployees, int len, int order)
 
 	if(listEmployees != NULL && len > 0)
 	{
-		SortEmployeesByLastNameAndSector(listEmployees, len, order);
-		rtnValue = 0;
-	}
-
-	return rtnValue;
-}
-
-void SortEmployeesByLastNameAndSector(eEmployee* listEmployees, int len, int order)
-{
-	for(int i = 0; i < len-1; i++)
-	{
-		for(int j = i+1; j < len; j++)
+		for(int i = 0; i < len-1; i++)
 		{
-			if(listEmployees[i].isEmpty == BUSY && listEmployees[j].isEmpty == BUSY)
+			for(int j = i+1; j < len; j++)
 			{
-				SortEmployeesByLastName(listEmployees, len, order);
-
-				if(strcmp(listEmployees[i].lastName, listEmployees[j].lastName) == 0)
+				if(listEmployees[i].isEmpty == BUSY && listEmployees[j].isEmpty == BUSY)
 				{
-					SortEmployeesBySector(listEmployees, len, order);
+					SortEmployeesByLastName(listEmployees, len, order);
+
+					if(strcmp(listEmployees[i].lastName, listEmployees[j].lastName) == 0)
+					{
+						SortEmployeesBySector(listEmployees, len, order);
+					}
+
+					rtnValue = 0;
 				}
 			}
 		}
 	}
+
+	return rtnValue;
 }
 
 void SortEmployeesByLastName(eEmployee* listEmployees, int len, int order)
@@ -398,7 +397,7 @@ void SortEmployeesBySector(eEmployee* listEmployees, int len, int order)
 	}
 }
 
-void PrintWageStatistics(eEmployee* listEmployees, int len)
+void PrintSalaryStadistics(eEmployee* listEmployees, int len)
 {
     int employeesCount;
     int employeesAboveAverage;

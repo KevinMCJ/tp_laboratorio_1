@@ -1,23 +1,23 @@
 #include "input.h"
 #include "ArrayEmployees.h"
 
-#define TAM 6
+#define TAM 1000
 
 int main(void) {
 
 	setbuf(stdout, NULL);
 
-	eEmployee listEmployees[TAM] = {{50, "Kevin", "Mamani", 340000, 2, BUSY}, {10000, "Marianopolkimen", "Pepitocaioklkmk", 15000, 100, BUSY}, {52, "Ramona", "Swenasdlkjwdddd", 25000, 3, BUSY}, {53, "Gaston", "Mamani", 16000, 3, BUSY}};
+	eEmployee listEmployees[TAM];
 	int optionSelected;
 	int idToRemove;
 	int idToModify;
 	int sortOrder;
 
-	/*if(InitEmployee(listEmployees, TAM) != 0)
+	if(InitEmployee(listEmployees, TAM) != 0)
 	{
 		printf("\n-No se pudo iniciar la lista correctamente, saliendo del programa..\n");
 		exit(0);
-	}*/
+	}
 
 	do
 	{
@@ -34,7 +34,7 @@ int main(void) {
 			case 1:
 				if(ThereIsAnEmptyPlace(listEmployees, TAM) == 0)
 				{
-					if(CreateEmployee(listEmployees, TAM) == 0)
+					if(CreateEmployee(listEmployees, TAM) == 0) //Usa AddEmployee.
 					{
 						printf("\n-Alta de empleado exitosa...\n");
 					}else{
@@ -70,7 +70,7 @@ int main(void) {
 				if(ThereIsAnEmployee(listEmployees, TAM) == 0)
 				{
 					if(PrintEmployees(listEmployees, TAM) == 0
-					&& PedirEntero(&idToRemove, "\n-Ingrese el ID del/la empleado/a a eliminar: ", "\n.ID Invalido! MIN:1 MAX:1000", 1, 10000, 4) == 0)
+					&& PedirEntero(&idToRemove, "\n-Ingrese el ID del/la empleado/a a eliminar: ", "\n.ID Invalido! MIN:1 MAX:1000", 1, 1000, 4) == 0)
 					{
 						switch(RemoveEmployee(listEmployees, TAM, idToRemove))
 						{
@@ -104,7 +104,7 @@ int main(void) {
 					{
 						printf("\n-Empleados ordenados correctamente..\n");
 						PrintEmployees(listEmployees, TAM);
-						PrintWageStatistics(listEmployees, TAM);
+						PrintSalaryStadistics(listEmployees, TAM);
 					}else{
 						printf("\n-No se pudo ordenar la lista reintente..\n");
 					}

@@ -27,7 +27,7 @@ int main()
 	int option = 0;
 	int len;
 
-	LinkedList* listaEmpleados = ll_newLinkedList(); //constructor lista.
+	LinkedList* listaEmpleados = ll_newLinkedList(); //Constructor lista.
 
 	do{
 		len = ll_len(listaEmpleados);
@@ -76,6 +76,20 @@ int main()
 			case 4:
 				break;
 			case 5:
+				switch(controller_removeEmployee(listaEmpleados))
+				{
+					case 0:
+						printf("\n-Empleado dado de baja correctamente.\n");
+						break;
+					case 1:
+						printf("\n-No se encontraron empleados en la lista para eliminar.\n");
+						break;
+					case 2:
+						printf("\n-No se encontro un empleado con el ID correspondiente..\n");
+						break;
+					default: // 3 | -1
+						printf("\n-Cancelando operacion...\n");
+				}
 				break;
 			case 6:
 				if(controller_ListEmployee(listaEmpleados) == 0)

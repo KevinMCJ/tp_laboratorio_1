@@ -148,6 +148,16 @@ void employee_listAnEmployee(Employee* this)
 	printf(" -----------------------------------------------------------------\n");
 }
 
+void employee_listAnEmployeeWithHeader(Employee* this)
+{
+	printf("\n\t\t    **EMPLEADO ENCONTRADO**");
+	printf("\n -----------------------------------------------------------------\n");
+	printf(" | ID   |       NOMBRE      |  HORAS TRABAJADAS |     SUELDO     |\n");
+	printf(" -----------------------------------------------------------------\n");
+	printf(" | %-8d %-24s %-16d %-10d |\n", this->id, this->nombre, this->horasTrabajadas, this->sueldo);
+	printf(" -----------------------------------------------------------------\n");
+}
+
 int employee_CompareByName(void* e1, void* e2)
 {
 	Employee* unEmpleado;

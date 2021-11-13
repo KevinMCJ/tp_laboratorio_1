@@ -126,7 +126,49 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int rtn = -1;
+	int maxId;
+	int idElegido;
+	int indexEmpleadoAEliminar;
+	char confirm;
+
+	Employee* empleadoAux;
+
+	if(pArrayListEmployee != NULL)
+	{
+		if(controller_ListEmployee(pArrayListEmployee) == 0)
+		{
+			if(controller_getMaxIdFromText(pArrayListEmployee, &maxId) == 0
+			&& PedirEntero(&idElegido, "\n-Ingrese el ID del/la empleado/a a eliminar: ", "\n.ERROR! -> Ingrese un ID Valido.", 1, maxId, 4) == 0)
+			{
+				indexEmpleadoAEliminar = controller_Find_Employee_ById(pArrayListEmployee, idElegido);
+
+				if(indexEmpleadoAEliminar != -1)
+				{
+					empleadoAux = ll_get(pArrayListEmployee, indexEmpleadoAEliminar);
+					employee_listAnEmployeeWithHeader(empleadoAux);
+
+					if(GetConfirmCharacter(&confirm, "\n-Esta seguro de que desea eliminar a este empleado/a? S / N: ", "\n.ERROR! -> Solo ingrese S o N.", 4) == 0
+					&& confirm == 'S')
+					{
+						rtn = 0;
+						ll_remove(pArrayListEmployee, indexEmpleadoAEliminar);
+						employee_delete(empleadoAux);
+
+					}else{
+						rtn = 3;
+					}
+
+				}else{
+					rtn = 2;
+				}
+			}
+		}else{
+			rtn = 1;
+		}
+	}
+
+    return rtn;
 }
 
 /** \brief Listar empleados

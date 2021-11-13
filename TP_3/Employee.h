@@ -28,6 +28,7 @@ int employee_setSueldo(Employee* this,int sueldo);
 int employee_getSueldo(Employee* this,int* sueldo);
 
 void employee_listAnEmployee(Employee* this);
+void employee_listAnEmployeeWithHeader(Employee* this);
 
 int employee_CompareByName(void*, void*);
 int employee_CompareById(void*, void*);

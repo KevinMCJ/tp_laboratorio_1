@@ -292,7 +292,45 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int rtn = -1;
+	int sortOption;
+	int menuOption = 0;
+
+	if(pArrayListEmployee != NULL)
+	{
+		controller_sortMenu();
+
+		if(PedirEntero(&menuOption, "\n-Que desea hacer?: ", "\n.ERROR! -> Ingrese una opcion valida (1 - 5)", 1, 5, 4) == 0
+		&& menuOption != 5)
+		{
+			if(PedirEntero(&sortOption, "\n.Eliga el criterio de ordenamiento -> 0.DESCENDENTE 1.ASCENDENTE: ", "\n.ERROR! -> Ingrese 0 o 1.", 0, 1, 4) == 0)
+			{
+				printf("\n-Ordenando...\n");
+
+				switch(menuOption)
+				{
+					case 1:
+						ll_sort(pArrayListEmployee, employee_CompareByName, sortOption);
+						rtn = 0;
+						break;
+					case 2:
+						ll_sort(pArrayListEmployee, employee_CompareById, sortOption);
+						rtn = 0;
+						break;
+					case 3:
+						ll_sort(pArrayListEmployee, employee_CompareByHorasT, sortOption);
+						rtn = 0;
+						break;
+					case 4:
+						ll_sort(pArrayListEmployee, employee_CompareBySueldo, sortOption);
+						rtn = 0;
+						break;
+				}
+			}
+		}
+	}
+
+    return rtn;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
@@ -419,6 +457,18 @@ void controller_modifyMenu()
 	printf("2. HORAS TRABAJADAS.\n");
 	printf("3. SUELDO\n");
 	printf("4. CANCELAR\n");
+}
+
+void controller_sortMenu()
+{
+	printf("\n   *************************");
+	printf("\n   *  MENU DE ORDENAMIENTO *\n");
+	printf("   *************************");
+	printf("\n1. Ordenar empleados por NOMBRE.\n");
+	printf("2. Ordenar empleados por ID.\n");
+	printf("3. Ordenar empleados por HORAS TRABAJADAS.\n");
+	printf("4. Ordenar empleados por SUELDO.\n");
+	printf("5. CANCELAR\n");
 }
 
 int controller_newId(LinkedList* pArrayListEmployee, int* newId)

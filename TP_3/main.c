@@ -114,6 +114,18 @@ int main()
 				}
 				break;
 			case 7:
+				if(len > 0)
+				{
+					if(controller_sortEmployee(listaEmpleados) == 0)
+					{
+						printf("\n-Lista ordenada correctamente.\n");
+					}else{
+						printf("\n-Cancelando operacion...\n");
+					}
+				}else{
+					printf("\n-No hay empleados en la lista para ordenar...\n");
+				}
+				break;
 				break;
 			case 8:
 				if(len > 0 && controller_saveAsText("data.csv", listaEmpleados) == 0)

@@ -142,3 +142,53 @@ int parser_BinaryFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
 
     return rtn;
 }
+
+int parser_IdFromText(FILE* pFile, LinkedList* pArrayListEmployee, int* pId)
+{
+	int rtn = -1;
+	char idConseguido[51];
+
+	if(pFile != NULL && pArrayListEmployee != NULL && pId != NULL)
+	{
+		rtn = 0;
+		fgets(idConseguido, 51, pFile);
+		*pId = atoi(idConseguido);
+	}
+
+	return rtn;
+}
+
+int parser_textFromId(FILE* pFile, LinkedList* pArrayListEmployee)
+{
+	int rtn = -1;
+	int maxId = 0;
+	int idAux;
+	int len;
+
+	Employee* empleadoAux;
+
+	if(pFile != NULL && pArrayListEmployee != NULL)
+	{
+		rtn = 0;
+		len = ll_len(pArrayListEmployee);
+
+		for(int i = 0; i < len; i++)
+		{
+			empleadoAux = ll_get(pArrayListEmployee, i);
+
+			if(empleadoAux != NULL)
+			{
+				employee_getId(empleadoAux, &idAux);
+
+				if(idAux > maxId || i == 0)
+				{
+					maxId = idAux;
+				}
+			}
+		}
+
+		fprintf(pFile, "%d", maxId);
+	}
+
+	return rtn;
+}

@@ -65,7 +65,44 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int rtn = -1;
+
+	int idValido;
+	char nombreValido[128];
+	int horasTrabajadasValido;
+	int sueldoValido;
+	char confirm;
+
+	Employee* empleadoAux;
+
+	empleadoAux = employee_new();
+
+	if(pArrayListEmployee != NULL && empleadoAux != NULL)
+	{
+		if(PedirString(nombreValido, 15, "\n-Ingrese el nombre del/la empleado/a: ", "\n.ERROR! -> MAX.CARACTERES: 20 - SOLO LETRAS", 4) == 0
+		&& PedirEntero(&horasTrabajadasValido, "\n-Ingrese las horas trabajadas del/la empleado/a: ", "\n.ERROR! -> MIN: 100 MAX: 300", 100, 300, 4) == 0
+		&& PedirEntero(&sueldoValido, "\n-Ingrese el sueldo del/la empleado/a: ", "\n.ERROR! -> MIN: 15K MAX: 600k", 15000, 600000, 4) == 0
+		&& controller_newId(pArrayListEmployee, &idValido) == 0)
+		{
+			if(GetConfirmCharacter(&confirm, "\n-Esta seguro de dar de alta al empleado/a? S / N: ", ".ERROR! -> SOLO Ingrese S o N.", 4) == 0
+			&& confirm == 'S')
+			{
+				rtn = 0;
+				employee_setId(empleadoAux, idValido);
+				employee_setNombre(empleadoAux, nombreValido);
+				employee_setHorasTrabajadas(empleadoAux, horasTrabajadasValido);
+				employee_setSueldo(empleadoAux, sueldoValido);
+
+				ll_add(pArrayListEmployee, empleadoAux);
+
+			}else{
+				rtn = 1;
+			}
+		}
+
+	}
+
+    return rtn;
 }
 
 /** \brief Modificar datos de empleado
@@ -197,6 +234,50 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 	return rtn;
 }
 
+int controller_saveIdAsText(LinkedList* pArrayListEmployee)
+{
+	int rtn = -1;
+	FILE* pFile;
+
+	if(pArrayListEmployee != NULL)
+	{
+		pFile = fopen("Maximo_ID_Empleado.txt", "w");
+
+		if(pFile != NULL)
+		{
+			rtn = 0;
+			parser_textFromId(pFile, pArrayListEmployee);
+			fclose(pFile);
+		}
+	}
+
+    return rtn;
+}
+
+int controller_getMaxIdFromText(LinkedList* pArrayListEmployee, int* pId)
+{
+	int rtn = -1;
+	FILE* pFile = NULL;
+
+	if(pArrayListEmployee != NULL)
+	{
+		pFile = fopen("Maximo_ID_Empleado.txt", "r");
+
+		if(pFile != NULL)
+		{
+			if(parser_IdFromText(pFile, pArrayListEmployee, pId) == 0)
+			{
+				rtn = 0;
+			}
+
+			fclose(pFile);
+		}
+
+	}
+
+    return rtn;
+}
+
 void controller_menuWithCounter(int len)
 {
 	printf("\n   *************************          ******************************");
@@ -212,5 +293,55 @@ void controller_menuWithCounter(int len)
 	printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
 	printf("9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
 	printf("10. Salir\n");
+}
+
+int controller_newId(LinkedList* pArrayListEmployee, int* newId)
+{
+	int rtn = -1;
+	int maxId;
+
+    if(pArrayListEmployee!=NULL)
+    {
+    	if(controller_getMaxIdFromText(pArrayListEmployee, &maxId) == 0)
+    	{
+    		rtn = 0;
+    		*newId = maxId + 1;
+    	}
+    }
+
+    return rtn;
+}
+
+int controller_Find_Employee_ById(LinkedList* pArrayListEmployee, int idBuscado)
+{
+	int rtn = -1;
+	int len;
+	int idObtenido;
+	int i;
+
+	Employee* empleadoAux;
+
+	if(pArrayListEmployee != NULL)
+	{
+		len = ll_len(pArrayListEmployee);
+
+		for(i = 0; i < len; i++)
+		{
+			empleadoAux = (Employee*) ll_get(pArrayListEmployee, i);
+
+			if(empleadoAux != NULL)
+			{
+				employee_getId(empleadoAux, &idObtenido);
+
+				if(idBuscado == idObtenido)
+				{
+					rtn = ll_indexOf(pArrayListEmployee, empleadoAux);
+					break; //Encontro un empleado con el id correspondiente, retorna su index.
+				}
+			}
+		}
+	}
+
+	return rtn;
 }
 

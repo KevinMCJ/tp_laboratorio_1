@@ -32,6 +32,7 @@ int main()
 	do{
 		len = ll_len(listaEmpleados);
 
+		controller_saveIdAsText(listaEmpleados);
 		controller_menuWithCounter(len);
 
 		if(PedirEntero(&option, "\n-Que desea hacer?: ", "\n.ERROR! -> Ingrese una opcion valida (1 - 10).", 1, 10, 8) != 0)
@@ -60,6 +61,17 @@ int main()
 				}
             	break;
             case 3:
+            	switch(controller_addEmployee(listaEmpleados))
+				{
+					case 0:
+						printf("\n-Alta de empleado exitosa.\n");
+						break;
+					case 1:
+						printf("\n-Cancelando operacion..\n");
+						break;
+					default: //-1
+						printf("\n-No se pudo dar de alta un empleado -> ERROR CARGA DE DATOS.\n");
+				}
 				break;
 			case 4:
 				break;

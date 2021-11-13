@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "LinkedList.h"
-#include "Employee.h"
+#include "parser.h"
 
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
  *
@@ -84,4 +81,64 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 	}
 
 	return rtn;
+}
+
+int parser_TextFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
+{
+	int rtn = -1;
+	int len;
+	Employee* empleadoAux;
+	int idAux;
+	char nombreAux[128];
+	int horasTrabajadasAux;
+	int sueldoAux;
+
+	if(pFile != NULL && pArrayListEmployee != NULL)
+	{
+		rtn = 0;
+		len = ll_len(pArrayListEmployee);
+
+		fprintf(pFile, "id,nombre,horasTrabajadas,sueldo\n"); //Imprime el encabezado
+
+		for(int i = 0; i < len; i++)
+		{
+			empleadoAux = (Employee*) ll_get(pArrayListEmployee, i);
+
+			if(empleadoAux != NULL)
+			{
+				if(employee_getId(empleadoAux, &idAux) == 0 && employee_getNombre(empleadoAux, nombreAux) == 0
+				&& employee_getHorasTrabajadas(empleadoAux, &horasTrabajadasAux) == 0 && employee_getSueldo(empleadoAux, &sueldoAux) == 0)
+				{
+					fprintf(pFile, "%d,%s,%d,%d\n", idAux, nombreAux, horasTrabajadasAux, sueldoAux);
+				}
+			}
+		}
+	}
+
+	return rtn;
+}
+
+int parser_BinaryFromEmployee(FILE* pFile , LinkedList* pArrayListEmployee)
+{
+	int rtn = -1;
+    int len;
+    Employee* empleadoAux;
+
+    if(pFile!=NULL && pArrayListEmployee!=NULL)
+    {
+    	rtn = 0;
+        len = ll_len(pArrayListEmployee);
+
+		for(int i = 0; i < len ; i++)
+		{
+			empleadoAux = (Employee*) ll_get(pArrayListEmployee, i);
+
+			if(empleadoAux != NULL)
+			{
+				fwrite(empleadoAux, sizeof(Employee), 1, pFile);
+			}
+		}
+    }
+
+    return rtn;
 }

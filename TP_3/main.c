@@ -76,8 +76,20 @@ int main()
 			case 7:
 				break;
 			case 8:
+				if(len > 0 && controller_saveAsText("data.csv", listaEmpleados) == 0)
+				{
+					printf("\n-Datos guardados correctamente.\n");
+				}else{
+					printf("\n-No fue posible guardar los datos en el archivo .csv -> CARGUE AL MENOS 1 EMPLEADO\n");
+				}
 				break;
 			case 9:
+				if(len > 0 && controller_saveAsBinary("data.bin", listaEmpleados) == 0)
+				{
+					printf("\n-Datos guardados correctamente.\n");
+				}else{
+					printf("\n-No fue posible guardar los datos en el archivo .csv -> CARGUE AL MENOS 1 EMPLEADO\n");
+				}
 				break;
         }
 

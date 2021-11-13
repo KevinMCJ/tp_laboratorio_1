@@ -152,7 +152,22 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int rtn = -1;
+	FILE* pFile;
+
+	if(path != NULL && pArrayListEmployee != NULL)
+	{
+		pFile = fopen(path, "w");
+
+		if(pFile != NULL)
+		{
+			rtn = 0;
+			parser_TextFromEmployee(pFile, pArrayListEmployee);
+			fclose(pFile);
+		}
+	}
+
+	return rtn;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
@@ -164,7 +179,22 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int rtn = -1;
+	FILE* pFile;
+
+	if(path != NULL && pArrayListEmployee != NULL)
+	{
+		pFile = fopen(path, "wb");
+
+		if(pFile != NULL)
+		{
+			rtn = 0;
+			parser_BinaryFromEmployee(pFile, pArrayListEmployee);
+			fclose(pFile);
+		}
+	}
+
+	return rtn;
 }
 
 void controller_menuWithCounter(int len)

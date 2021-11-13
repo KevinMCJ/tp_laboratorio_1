@@ -114,7 +114,80 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int rtn = -1;
+	int maxId;
+	int idElegido;
+	int indexEmpleadoAModificar;
+	int option = 0;
+	char confirm;
+
+	Employee* empleadoAux;
+	char auxNombre[128];
+	int auxHorasTrabajadas;
+	int auxSueldo;
+
+
+	if(pArrayListEmployee != NULL)
+	{
+		if(controller_ListEmployee(pArrayListEmployee) == 0)
+		{
+			if(controller_getMaxIdFromText(pArrayListEmployee, &maxId) == 0
+			&& PedirEntero(&idElegido, "\n-Ingrese el ID del/la empleado/a a modificar: ", "\n.ERROR! -> Ingrese un ID Valido.", 1, maxId, 4) == 0)
+			{
+				indexEmpleadoAModificar = controller_Find_Employee_ById(pArrayListEmployee, idElegido);
+
+				if(indexEmpleadoAModificar != -1)
+				{
+					empleadoAux = ll_get(pArrayListEmployee, indexEmpleadoAModificar);
+					employee_listAnEmployeeWithHeader(empleadoAux);
+
+					controller_modifyMenu();
+
+					if(PedirEntero(&option, "\n-Que desea modificar?: ", "\n.ERROR! -> Ingrese una opcion valida (1 - 4).", 1, 4, 6) == 0)
+					{
+						switch(option)
+						{
+							case 1:
+								if(PedirString(auxNombre, 20, "\n-Ingrese el nuevo nombre del/la empleado/a: ", "\n.ERROR! -> MAX.CARACTERES: 20 - SOLO LETRAS", 4) == 0
+								&& GetConfirmCharacter(&confirm, "\n-Esta seguro de que desea modificar el nombre? S / N: ", "\n.ERROR! Solo ingrese S / N", 4) == 0
+								&& confirm == 'S')
+								{
+									employee_setNombre(empleadoAux, auxNombre);
+									rtn = 0;
+								}
+								break;
+							case 2:
+								if(PedirEntero(&auxHorasTrabajadas, "\n-Ingrese las nuevas horas trabajadas del/la empleado/a: ", "\n.ERROR! -> MIN: 100 MAX: 300", 100, 300, 4) == 0
+								&& GetConfirmCharacter(&confirm, "\n-Esta seguro de que desea modificar las horas? S / N: ", "\n.ERROR! Solo ingrese S / N", 4) == 0
+								&& confirm == 'S')
+								{
+									employee_setHorasTrabajadas(empleadoAux, auxHorasTrabajadas);
+									rtn = 0;
+								}
+								break;
+							case 3:
+								if(PedirEntero(&auxSueldo, "\n-Ingrese el nuevo sueldo del/la empleado/a: ", "\n.ERROR! -> MIN: 15K MAX: 600k", 15000, 600000, 4) == 0
+								&& GetConfirmCharacter(&confirm, "\n-Esta seguro de que desea modificar el sueldo? S / N: ", "\n.ERROR! Solo ingrese S / N", 4) == 0
+								&& confirm == 'S')
+								{
+									employee_setSueldo(empleadoAux, auxSueldo);
+									rtn = 0;
+								}
+								break;
+						}
+					}
+
+				}else{
+					rtn = 2;
+				}
+			}
+		}
+		else{
+			rtn = 1;
+		}
+	}
+
+    return rtn;
 }
 
 /** \brief Baja de empleado
@@ -335,6 +408,17 @@ void controller_menuWithCounter(int len)
 	printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
 	printf("9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
 	printf("10. Salir\n");
+}
+
+void controller_modifyMenu()
+{
+	printf("\n   *************************");
+	printf("\n   *  MENU DE MODIFICACION  *\n");
+	printf("   *************************");
+	printf("\n1. NOMBRE.\n");
+	printf("2. HORAS TRABAJADAS.\n");
+	printf("3. SUELDO\n");
+	printf("4. CANCELAR\n");
 }
 
 int controller_newId(LinkedList* pArrayListEmployee, int* newId)

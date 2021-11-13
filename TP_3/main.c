@@ -74,6 +74,20 @@ int main()
 				}
 				break;
 			case 4:
+				switch(controller_editEmployee(listaEmpleados))
+				{
+					case 0:
+						printf("\n-Modificacion de empleado exitosa.\n");
+						break;
+					case 1:
+						printf("\n-No se encontraron empleados en la lista para modificar...\n");
+						break;
+					case 2:
+						printf("\n-No se encontro un empleado con el ID correspondiente..\n");
+						break;
+					default:
+						printf("\n-Cancelando operacion..\n");
+				}
 				break;
 			case 5:
 				switch(controller_removeEmployee(listaEmpleados))

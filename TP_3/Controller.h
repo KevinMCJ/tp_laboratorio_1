@@ -20,5 +20,6 @@ int controller_newId(LinkedList* pArrayListEmployee, int* newId);
 int controller_Find_Employee_ById(LinkedList* pArrayListEmployee, int idBuscado);
 
 void controller_menuWithCounter(int len);
+void controller_modifyMenu();
 
 

@@ -18,14 +18,14 @@
     10. Salir
 *****************************************************/
 
-
-
 int main()
 {
 	setbuf(stdout, NULL);
 
 	int option = 0;
 	int len;
+	char confirm;
+	int salio = 0;
 
 	LinkedList* listaEmpleados = ll_newLinkedList(); //Constructor lista.
 
@@ -143,9 +143,17 @@ int main()
 					printf("\n-No fue posible guardar los datos en el archivo .csv -> CARGUE AL MENOS 1 EMPLEADO\n");
 				}
 				break;
+			default:
+				if(GetConfirmCharacter(&confirm, "\n.Recuerde guardar los cambios.\n-Esta seguro de que desea salir? S / N: ", ".ERROR! -> Solo ingrese S o N.", 2) == 0
+				&& confirm == 'S')
+				{
+					salio = 1;
+					ll_deleteLinkedList(listaEmpleados);
+					printf("\n-Gracias por utilizar el programa...\n");
+				}
         }
 
-    }while(option != 10);
+    }while(salio != 1);
 
     return 0;
 }

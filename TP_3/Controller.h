@@ -14,6 +14,7 @@ int controller_sortEmployee(LinkedList* spArrayListEmployee);
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee);
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee);
 
+//.txt ID
 int controller_saveIdAsText(LinkedList* pArrayListEmployee);
 int controller_getMaxIdFromText(LinkedList* pArrayListEmployee, int* pId);
 int controller_newId(LinkedList* pArrayListEmployee, int* newId);

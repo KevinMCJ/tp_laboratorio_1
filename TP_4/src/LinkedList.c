@@ -454,6 +454,14 @@ int ll_push(LinkedList* this, int index, void* pElement)
 {
     int returnAux = -1;
 
+    if(this != NULL && index >= 0)
+    {
+		if(addNode(this, index, pElement) == 0)
+		{
+			returnAux = 0;
+		}
+    }
+
     return returnAux;
 }
 
@@ -466,9 +474,21 @@ int ll_push(LinkedList* this, int index, void* pElement)
                             (pElement) Si funciono correctamente
  *
  */
-void* ll_pop(LinkedList* this,int index)
+void* ll_pop(LinkedList* this, int index)
 {
     void* returnAux = NULL;
+    Node* pNode = NULL;
+
+    if(this != NULL && index >= 0)
+    {
+    	pNode = getNode(this, index);
+
+    	if(pNode != NULL)
+    	{
+    		returnAux = pNode->pElement;
+    		ll_remove(this, index);
+    	}
+    }
 
     return returnAux;
 }

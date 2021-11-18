@@ -617,7 +617,27 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 */
 LinkedList* ll_clone(LinkedList* this)
 {
-    LinkedList* cloneArray = NULL;
+	LinkedList* cloneArray = NULL;
+	int len;
+	void* pElement = NULL;
+
+	if(this != NULL)
+	{
+		len = ll_len(this);
+		cloneArray = ll_newLinkedList();
+
+		if(cloneArray != NULL)
+		{
+			for(int i = 0; i < len; i++)
+			{
+				pElement = ll_get(this, i);
+				ll_add(cloneArray, pElement);
+			}
+		}
+	}
+
+	return cloneArray;
+    /*LinkedList* cloneArray = NULL;
 
     if(this != NULL)
     {
@@ -629,7 +649,7 @@ LinkedList* ll_clone(LinkedList* this)
     	}
     }
 
-    return cloneArray;
+    return cloneArray;*/
 }
 
 
